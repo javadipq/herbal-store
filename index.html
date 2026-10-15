@@ -1,0 +1,350 @@
+<!DOCTYPE html>
+<html lang="fa" dir="rtl">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>عطارباشی | فروشگاه آنلاین خشکبار دستچین و گیاهان دارویی اعلا</title>
+  <meta name="description" content="فروشگاه اینترنتی عطارباشی، مرجع خرید پسته اکبری رفسنجان، زعفران سوپر نگین قائنات، دمنوش‌های طبیعی و گیاهان دارویی با ضمانت اصالت و بازگشت وجه">
+  
+  <!-- Favicon -->
+  <link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+  <!-- Tailwind CSS via CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <!-- Google Fonts Vazirmatn -->
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Vazirmatn:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+  <!-- Lucide Icons -->
+  <script src="https://unpkg.com/lucide@latest"></script>
+  
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Vazirmatn', 'sans-serif'],
+          },
+          colors: {
+            brand: {
+              50: '#f4f9f4',
+              100: '#e5f3e5',
+              200: '#cbe7cb',
+              500: '#2d6a4f',
+              600: '#1b4332',
+              700: '#081c15',
+              accent: '#d4a373',
+              gold: '#e9c46a',
+              amber: '#bc6c25'
+            }
+          }
+        }
+      }
+    }
+  </script>
+  <style>
+    body { font-family: 'Vazirmatn', sans-serif; }
+    .glass-nav {
+      background: rgba(255, 255, 255, 0.92);
+      backdrop-filter: blur(14px);
+    }
+    .hero-pattern {
+      background: radial-gradient(circle at top right, rgba(45, 106, 79, 0.09), transparent 60%),
+                  radial-gradient(circle at bottom left, rgba(212, 163, 115, 0.14), transparent 50%);
+    }
+    .custom-scroll::-webkit-scrollbar {
+      width: 6px;
+    }
+    .custom-scroll::-webkit-scrollbar-thumb {
+      background-color: #cbd5e1;
+      border-radius: 4px;
+    }
+    @keyframes pulse-subtle {
+      0%, 100% { transform: scale(1); }
+      50% { transform: scale(1.05); }
+    }
+    .pulse-subtle { animation: pulse-subtle 3s infinite ease-in-out; }
+  </style>
+</head>
+<body class="bg-stone-50 text-stone-800 antialiased selection:bg-brand-500 selection:text-white flex flex-col min-h-screen">
+
+  <!-- Top Announcement Bar -->
+  <div class="bg-brand-600 text-brand-50 text-xs py-2 px-4 text-center font-medium flex flex-wrap items-center justify-center gap-2">
+    <span>✨ ارسال رایگان خریدهای بالای ۸۰۰ هزار تومان با پست پیشتاز به سراسر کشور</span>
+    <span class="bg-brand-gold text-stone-900 px-2.5 py-0.5 rounded-full text-[10px] font-extrabold tracking-wide">کد تخفیف: ATTAR1403</span>
+  </div>
+
+  <!-- Header / Navigation -->
+  <header class="sticky top-0 z-40 glass-nav border-b border-stone-200/80 shadow-sm transition-all">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 h-20 flex items-center justify-between">
+      
+      <!-- Brand Logo -->
+      <div class="flex items-center gap-3 cursor-pointer group" onclick="navigate('home')">
+        <div class="w-12 h-12 rounded-2xl bg-gradient-to-tr from-brand-600 to-brand-500 flex items-center justify-center shadow-lg shadow-brand-600/25 text-white group-hover:scale-105 transition-transform">
+          <i data-lucide="leaf" class="w-7 h-7"></i>
+        </div>
+        <div>
+          <span class="text-2xl font-black tracking-tight text-brand-600 block">عطارباشی</span>
+          <span class="block text-[11px] font-semibold text-brand-amber">خشکبار دستچین و گیاهان دارویی</span>
+        </div>
+      </div>
+
+      <!-- Navigation Links -->
+      <nav class="hidden md:flex items-center gap-7 text-sm font-semibold">
+        <button onclick="navigate('home')" class="nav-btn transition-colors hover:text-brand-500 text-brand-600 font-extrabold" data-page="home">صفحه اصلی</button>
+        <button onclick="navigate('shop')" class="nav-btn transition-colors hover:text-brand-500 text-stone-600" data-page="shop">فروشگاه محصولات</button>
+        <button onclick="navigate('blog')" class="nav-btn transition-colors hover:text-brand-500 text-stone-600" data-page="blog">مجله سلامت و عطاری</button>
+        <button onclick="navigate('about')" class="nav-btn transition-colors hover:text-brand-500 text-stone-600" data-page="about">درباره ما</button>
+        <button onclick="navigate('contact')" class="nav-btn transition-colors hover:text-brand-500 text-stone-600" data-page="contact">تماس و پشتیبانی</button>
+      </nav>
+
+      <!-- Action Buttons -->
+      <div class="flex items-center gap-2 sm:gap-3">
+        <!-- Search trigger -->
+        <button onclick="openSearchModal()" class="p-2.5 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-all" title="جستجو در محصولات">
+          <i data-lucide="search" class="w-5 h-5"></i>
+        </button>
+
+        <!-- Cart button -->
+        <button onclick="toggleCartDrawer()" class="relative p-2.5 rounded-xl text-stone-600 hover:bg-stone-100 hover:text-stone-900 transition-all" title="سبد خرید">
+          <i data-lucide="shopping-bag" class="w-5 h-5"></i>
+          <span id="cartBadge" class="absolute -top-1 -right-1 bg-brand-amber text-white text-[11px] w-5 h-5 rounded-full flex items-center justify-center font-bold shadow-sm">0</span>
+        </button>
+
+        <!-- Admin panel entry -->
+        <button onclick="navigate('admin')" class="flex items-center gap-1.5 px-3.5 py-2 rounded-xl text-xs font-bold bg-stone-900 text-white hover:bg-stone-800 transition-all shadow-sm">
+          <i data-lucide="layout-dashboard" class="w-4 h-4 text-brand-gold"></i>
+          <span class="hidden sm:inline">پنل مدیریت</span>
+        </button>
+
+        <!-- Mobile Menu Toggle -->
+        <button onclick="toggleMobileMenu()" class="md:hidden p-2.5 text-stone-600 hover:text-stone-900 rounded-xl hover:bg-stone-100">
+          <i data-lucide="menu" class="w-6 h-6"></i>
+        </button>
+      </div>
+    </div>
+
+    <!-- Mobile Drawer Menu -->
+    <div id="mobileMenu" class="md:hidden hidden border-t border-stone-200 bg-white/95 px-6 py-4 space-y-3">
+      <button onclick="navigate('home'); toggleMobileMenu();" class="block w-full text-right py-2 text-sm font-bold text-stone-800 hover:text-brand-600">صفحه اصلی</button>
+      <button onclick="navigate('shop'); toggleMobileMenu();" class="block w-full text-right py-2 text-sm font-bold text-stone-800 hover:text-brand-600">فروشگاه محصولات</button>
+      <button onclick="navigate('blog'); toggleMobileMenu();" class="block w-full text-right py-2 text-sm font-bold text-stone-800 hover:text-brand-600">مجله سلامت</button>
+      <button onclick="navigate('about'); toggleMobileMenu();" class="block w-full text-right py-2 text-sm font-bold text-stone-800 hover:text-brand-600">درباره ما</button>
+      <button onclick="navigate('contact'); toggleMobileMenu();" class="block w-full text-right py-2 text-sm font-bold text-stone-800 hover:text-brand-600">تماس با ما</button>
+    </div>
+  </header>
+
+  <!-- MAIN VIEW CONTAINER -->
+  <main id="appContent" class="flex-1">
+    <!-- Dynamic page content will be injected here -->
+  </main>
+
+  <!-- CART SLIDEOVER DRAWER -->
+  <div id="cartDrawer" class="fixed inset-0 z-50 overflow-hidden hidden" aria-labelledby="slide-over-title" role="dialog" aria-modal="true">
+    <div class="absolute inset-0 bg-stone-900/50 backdrop-blur-sm transition-opacity" onclick="toggleCartDrawer()"></div>
+    <div class="pointer-events-none fixed inset-y-0 left-0 flex max-w-full">
+      <div class="pointer-events-auto w-screen max-w-md bg-white shadow-2xl flex flex-col justify-between">
+        
+        <!-- Header -->
+        <div class="p-6 border-b border-stone-100 flex items-center justify-between">
+          <div class="flex items-center gap-3">
+            <i data-lucide="shopping-bag" class="w-6 h-6 text-brand-600"></i>
+            <h2 class="text-lg font-bold text-stone-900">سبد خرید شما</h2>
+          </div>
+          <button onclick="toggleCartDrawer()" class="p-2 text-stone-400 hover:text-stone-700 rounded-lg hover:bg-stone-100">
+            <i data-lucide="x" class="w-5 h-5"></i>
+          </button>
+        </div>
+
+        <!-- Items Container -->
+        <div id="cartItemsList" class="p-6 overflow-y-auto flex-1 space-y-4 custom-scroll">
+          <!-- Cart items render here -->
+        </div>
+
+        <!-- Footer / Checkout -->
+        <div class="p-6 border-t border-stone-100 bg-stone-50 space-y-4">
+          <div class="flex items-center justify-between text-sm">
+            <span class="text-stone-500 font-medium">جمع کل خرید:</span>
+            <span id="cartTotalPrice" class="text-xl font-black text-brand-600">۰ تومان</span>
+          </div>
+          <p class="text-[11px] text-stone-400">هزینه نهایی ارسال بر اساس آدرس شما در مرحله تسویه حساب محاسبه می‌شود.</p>
+          <button onclick="openCheckoutModal()" class="w-full py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl shadow-lg shadow-brand-600/30 transition-all flex items-center justify-center gap-2">
+            <span>تکمیل سفارش و ثبت آدرس</span>
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+      </div>
+    </div>
+  </div>
+
+  <!-- CHECKOUT MODAL -->
+  <div id="checkoutModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
+    <div class="absolute inset-0 bg-stone-950/60 backdrop-blur-md" onclick="closeCheckoutModal()"></div>
+    <div class="relative bg-white w-full max-w-xl rounded-3xl shadow-2xl p-6 sm:p-8 overflow-hidden max-h-[90vh] overflow-y-auto custom-scroll">
+      <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-6">
+        <div>
+          <h3 class="text-xl font-black text-stone-900">ثبت اطلاعات ارسال و پرداخت</h3>
+          <p class="text-xs text-stone-500 mt-1">سفارش شما پس از ثبت بلافاصله بسته‌بندی خواهد شد</p>
+        </div>
+        <button onclick="closeCheckoutModal()" class="text-stone-400 hover:text-stone-700"><i data-lucide="x" class="w-6 h-6"></i></button>
+      </div>
+
+      <form id="checkoutForm" onsubmit="handlePlaceOrder(event)" class="space-y-4 text-xs">
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-stone-700 mb-1.5">نام و نام خانوادگی تحویل‌گیرنده *</label>
+            <input type="text" id="orderName" required placeholder="مثال: علی رضایی" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none text-stone-800">
+          </div>
+          <div>
+            <label class="block font-bold text-stone-700 mb-1.5">شماره موبایل جهت هماهنگی *</label>
+            <input type="tel" id="orderPhone" required placeholder="۰۹۱۲۳۴۵۶۷۸۹" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none text-stone-800">
+          </div>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 gap-4">
+          <div>
+            <label class="block font-bold text-stone-700 mb-1.5">استان *</label>
+            <input type="text" id="orderProvince" required placeholder="مثال: تهران" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none text-stone-800">
+          </div>
+          <div>
+            <label class="block font-bold text-stone-700 mb-1.5">شهر *</label>
+            <input type="text" id="orderCity" required placeholder="مثال: تهران" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none text-stone-800">
+          </div>
+        </div>
+
+        <div>
+          <label class="block font-bold text-stone-700 mb-1.5">آدرس دقیق پستی *</label>
+          <textarea id="orderAddress" rows="2" required placeholder="خیابان، کوچه، پلاک، واحد..." class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none text-stone-800"></textarea>
+        </div>
+
+        <div>
+          <label class="block font-bold text-stone-700 mb-1.5">روش پرداخت</label>
+          <div class="grid grid-cols-2 gap-3">
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-brand-500 bg-brand-50/50 cursor-pointer">
+              <input type="radio" name="paymentMethod" value="online" checked class="text-brand-600 focus:ring-brand-500">
+              <span class="font-bold text-stone-800">درگاه پرداخت اینترنتی</span>
+            </label>
+            <label class="flex items-center gap-2.5 p-3 rounded-xl border border-stone-200 hover:border-brand-300 cursor-pointer">
+              <input type="radio" name="paymentMethod" value="cod" class="text-brand-600 focus:ring-brand-500">
+              <span class="font-bold text-stone-800">پرداخت در محل</span>
+            </label>
+          </div>
+        </div>
+
+        <!-- Order Summary inside Checkout -->
+        <div class="p-4 bg-stone-50 rounded-2xl border border-stone-100 flex items-center justify-between">
+          <div>
+            <span class="text-stone-500 block">مبلغ نهایی قابل پرداخت:</span>
+            <span id="checkoutFinalPrice" class="text-lg font-black text-brand-600">۰ تومان</span>
+          </div>
+          <span class="text-[11px] text-emerald-600 font-bold bg-emerald-50 px-2.5 py-1 rounded-lg">ارسال رایگان فعال شد</span>
+        </div>
+
+        <button type="submit" class="w-full py-4 bg-emerald-600 hover:bg-emerald-500 text-white font-bold rounded-2xl shadow-xl shadow-emerald-600/30 transition-all text-sm flex items-center justify-center gap-2">
+          <i data-lucide="shield-check" class="w-5 h-5"></i>
+          <span>پرداخت امن و ثبت نهایی سفارش</span>
+        </button>
+      </form>
+    </div>
+  </div>
+
+  <!-- SEARCH MODAL -->
+  <div id="searchModal" class="fixed inset-0 z-50 hidden flex items-start justify-center pt-20 px-4">
+    <div class="absolute inset-0 bg-stone-950/60 backdrop-blur-md" onclick="closeSearchModal()"></div>
+    <div class="relative bg-white w-full max-w-2xl rounded-2xl shadow-2xl p-6 overflow-hidden">
+      <div class="flex items-center gap-3 border-b border-stone-200 pb-4">
+        <i data-lucide="search" class="w-6 h-6 text-stone-400"></i>
+        <input type="text" id="searchInput" placeholder="جستجوی پسته، زعفران، دمنوش، هل، روغن آرگان و..." 
+          class="w-full text-base bg-transparent border-0 focus:outline-none focus:ring-0 text-stone-800 placeholder-stone-400"
+          oninput="handleSearch(this.value)">
+        <button onclick="closeSearchModal()" class="text-stone-400 hover:text-stone-700">
+          <i data-lucide="x" class="w-5 h-5"></i>
+        </button>
+      </div>
+      <div id="searchResults" class="mt-4 max-h-80 overflow-y-auto space-y-2 custom-scroll">
+        <p class="text-xs text-stone-400 text-center py-6">کلمه مورد نظر خود را تایپ کنید...</p>
+      </div>
+    </div>
+  </div>
+
+  <!-- FOOTER -->
+  <footer class="bg-stone-900 text-stone-300 pt-16 pb-12 border-t border-stone-800 mt-20">
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10 pb-12 border-b border-stone-800">
+        
+        <!-- Col 1: About -->
+        <div class="space-y-4">
+          <div class="flex items-center gap-3 text-white">
+            <div class="w-10 h-10 rounded-xl bg-brand-500 flex items-center justify-center">
+              <i data-lucide="leaf" class="w-5 h-5"></i>
+            </div>
+            <span class="text-xl font-black">عطارباشی</span>
+          </div>
+          <p class="text-xs text-stone-400 leading-relaxed">
+            بزرگ‌ترین و معتبرترین مرجع تخصصی خشکبار تازه، زعفران قائنات، ادویه‌جات اصیل هندی و ایرانی و انواع دمنوش‌ها و عرقیات طبیعی سنتی با ضمانت بازگشت وجه.
+          </p>
+          <div class="flex items-center gap-3 text-stone-400 pt-2">
+            <a href="https://instagram.com" target="_blank" class="p-2 bg-stone-800 hover:text-brand-gold rounded-lg transition-colors"><i data-lucide="instagram" class="w-4 h-4"></i></a>
+            <a href="https://t.me" target="_blank" class="p-2 bg-stone-800 hover:text-brand-gold rounded-lg transition-colors"><i data-lucide="send" class="w-4 h-4"></i></a>
+            <a href="tel:02188889999" class="p-2 bg-stone-800 hover:text-brand-gold rounded-lg transition-colors"><i data-lucide="phone" class="w-4 h-4"></i></a>
+          </div>
+        </div>
+
+        <!-- Col 2: Quick Links -->
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white tracking-wide">دسترسی سریع</h4>
+          <ul class="space-y-2 text-xs">
+            <li><button onclick="navigate('shop')" class="hover:text-brand-gold transition-colors">فروشگاه محصولات</button></li>
+            <li><button onclick="navigate('blog')" class="hover:text-brand-gold transition-colors">مجله خواص دارویی</button></li>
+            <li><button onclick="navigate('home')" class="hover:text-brand-gold transition-colors">تخفیف‌های ویژه فصل</button></li>
+            <li><button onclick="navigate('about')" class="hover:text-brand-gold transition-colors">درباره و اصالت کالا</button></li>
+            <li><button onclick="navigate('contact')" class="hover:text-brand-gold transition-colors">تماس با پشتیبانی</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 3: Categories -->
+        <div class="space-y-3">
+          <h4 class="text-sm font-bold text-white tracking-wide">دسته‌بندی‌های برگزیده</h4>
+          <ul class="space-y-2 text-xs">
+            <li><button onclick="filterShopCategory('خشکبار و مغزیجات')" class="hover:text-brand-gold">پسته و آجیل عیدانه</button></li>
+            <li><button onclick="filterShopCategory('زعفران و هل')" class="hover:text-brand-gold">زعفران سوپر نگین</button></li>
+            <li><button onclick="filterShopCategory('دمنوش و گیاهان دارویی')" class="hover:text-brand-gold">دمنوش‌های آرامش‌بخش</button></li>
+            <li><button onclick="filterShopCategory('روغن‌ها و عرقیات')" class="hover:text-brand-gold">روغن‌های ارگانیک و آرایشی</button></li>
+          </ul>
+        </div>
+
+        <!-- Col 4: Trust / Badges -->
+        <div class="space-y-4">
+          <h4 class="text-sm font-bold text-white tracking-wide">نمادهای اعتماد و کیفیت</h4>
+          <div class="grid grid-cols-3 gap-2">
+            <div class="bg-stone-800/80 p-3 rounded-xl border border-stone-700/50 text-center flex flex-col items-center justify-center">
+              <i data-lucide="shield-check" class="w-6 h-6 text-brand-gold mb-1"></i>
+              <span class="text-[10px] text-stone-300">اصالت ۱۰۰٪</span>
+            </div>
+            <div class="bg-stone-800/80 p-3 rounded-xl border border-stone-700/50 text-center flex flex-col items-center justify-center">
+              <i data-lucide="truck" class="w-6 h-6 text-brand-gold mb-1"></i>
+              <span class="text-[10px] text-stone-300">ارسال سریع</span>
+            </div>
+            <div class="bg-stone-800/80 p-3 rounded-xl border border-stone-700/50 text-center flex flex-col items-center justify-center">
+              <i data-lucide="refresh-cw" class="w-6 h-6 text-brand-gold mb-1"></i>
+              <span class="text-[10px] text-stone-300">۷ روز ضمانت</span>
+            </div>
+          </div>
+          <p class="text-[11px] text-stone-400">پشتیبانی تلفنی: ۰۲۱-۸۸۸۸۹۹۹۹ (شنبه تا پنج‌شنبه ۹ الی ۱۹)</p>
+          <div class="text-[11px] text-stone-500">نشانی دفتر مرکزی: تهران، خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۲۳۰</div>
+        </div>
+
+      </div>
+
+      <div class="pt-8 flex flex-col sm:flex-row items-center justify-between text-xs text-stone-500 gap-4">
+        <p>© ۱۴۰۳ تمام حقوق مادی و معنوی متعلق به فروشگاه عطارباشی است.</p>
+        <p class="flex items-center gap-1">محصولات اصیل مزارع ایران <i data-lucide="heart" class="w-3.5 h-3.5 text-rose-500 fill-rose-500"></i></p>
+      </div>
+    </div>
+  </footer>
+
+  <!-- Store Logic & Application Script -->
+  <script src="app.js"></script>
+</body>
+</html>
