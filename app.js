@@ -1,119 +1,17 @@
-// Initial Default Data (Preserved in LocalStorage)
-const INITIAL_PRODUCTS = [
-  {
-    id: 1,
-    title: "پسته اکبری اعلا رفسنجان (دستچین خام)",
-    category: "خشکبار و مغزیجات",
-    price: 940000,
-    oldPrice: 1100000,
-    rating: 4.9,
-    reviewsCount: 142,
-    stock: 25,
-    unit: "کیلوگرم",
-    image: "https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80",
-    badge: "فروش ویژه",
-    description: "پسته اکبری خندان، دستچین باغات رفسنجان. بدون نمک، تازه و سرشار از آهن و ویتامین E."
-  },
-  {
-    id: 2,
-    title: "زعفران سوپر نگین اعلا صادراتی قائنات",
-    category: "زعفران و هل",
-    price: 380000,
-    oldPrice: 420000,
-    rating: 5.0,
-    reviewsCount: 230,
-    stock: 50,
-    unit: "یک مثقال (۴.۶ گرم)",
-    image: "https://images.unsplash.com/photo-1599940824399-b87987ceb72a?auto=format&fit=crop&w=800&q=80",
-    badge: "پرفروش",
-    description: "زعفران سرگل قلم درشت صادراتی قائنات با عطر، رنگ‌دهی فوق‌العاده و تضمین آزمایشگاهی خلوص."
-  },
-  {
-    id: 3,
-    title: "بادام درختی پوست کاغذی ایرانی",
-    category: "خشکبار و مغزیجات",
-    price: 650000,
-    oldPrice: null,
-    rating: 4.8,
-    reviewsCount: 88,
-    stock: 40,
-    unit: "کیلوگرم",
-    image: "https://images.unsplash.com/photo-1508061253366-f7da158b6d46?auto=format&fit=crop&w=800&q=80",
-    badge: "تازه",
-    description: "بادام شیرین با پوست بسیار نازک کاغذی، بدون دانه تلخ، سرشار از کلسیم و منیزیم."
-  },
-  {
-    id: 4,
-    title: "دمنوش گل گاوزبان اصل کوهی همراه لیمو عمانی",
-    category: "دمنوش و گیاهان دارویی",
-    price: 185000,
-    oldPrice: 210000,
-    rating: 4.7,
-    reviewsCount: 64,
-    stock: 30,
-    unit: "بسته ۲۵۰ گرمی",
-    image: "https://images.unsplash.com/photo-1576092768241-dec231879fc3?auto=format&fit=crop&w=800&q=80",
-    badge: "آرامش‌بخش",
-    description: "دستچین شده از ارتفاعات الموت و اشکورات، آرامش‌بخش طبیعی اعصاب و تقویت‌کننده سیستم ایمنی."
-  },
-  {
-    id: 5,
-    title: "غنچه گل محمدی ارگانیک داراب و کاشان",
-    category: "دمنوش و گیاهان دارویی",
-    price: 140000,
-    oldPrice: null,
-    rating: 4.9,
-    reviewsCount: 110,
-    stock: 35,
-    unit: "بسته ۳۰۰ گرمی",
-    image: "https://images.unsplash.com/photo-1563245372-f21724e3856d?auto=format&fit=crop&w=800&q=80",
-    badge: "معطر",
-    description: "غنچه‌های صورتی خشک شده با عطر طبیعی شگفت‌انگیز، عالی برای ترکیب با چای سیاه و دمنوش‌های سلامت."
-  },
-  {
-    id: 6,
-    title: "گردو تویسرکان پوست کاغذی مغز سفید",
-    category: "خشکبار و مغزیجات",
-    price: 590000,
-    oldPrice: 650000,
-    rating: 4.8,
-    reviewsCount: 95,
-    stock: 20,
-    unit: "کیلوگرم",
-    image: "https://images.unsplash.com/photo-1560769629-975ec94e6a86?auto=format&fit=crop&w=800&q=80",
-    badge: "برگزیده",
-    description: "گردوی روغنی و لذیذ باغ‌های تویسرکان با مغز سفید و چربی طبیعی امگا ۳ بالا."
-  },
-  {
-    id: 7,
-    title: "هل اکبر بنفش امپریال درجه یک",
-    category: "زعفران و هل",
-    price: 495000,
-    oldPrice: 530000,
-    rating: 5.0,
-    reviewsCount: 175,
-    stock: 60,
-    unit: "بسته ۱۰۰ گرمی",
-    image: "https://images.unsplash.com/photo-1596040033229-a9821ebd058d?auto=format&fit=crop&w=800&q=80",
-    badge: "هندی اصل",
-    description: "دانه‌های درشت هل سبز هندی، بسته‌بندی پلمپ کارخانه با نهایت عطر و ماندگاری."
-  },
-  {
-    id: 8,
-    title: "روغن آرگان خالص مراکشی اصل (پرس سرد)",
-    category: "روغن‌ها و عرقیات",
-    price: 360000,
-    oldPrice: 450000,
-    rating: 4.9,
-    reviewsCount: 78,
-    stock: 18,
-    unit: "شیشه ۵۰ میلی‌لیتر",
-    image: "https://images.unsplash.com/photo-1608571423902-eed4a5ad8108?auto=format&fit=crop&w=800&q=80",
-    badge: "ارگانیک",
-    description: "روغن صد در صد خالص آرگان برای جوانسازی پوست، آبرسانی مو و ترمیم ساقه موهای آسیب‌دیده."
-  }
-];
+// ========================================================
+// Attarbashi Main Application Script (PWA & Client Logic)
+// ========================================================
 
+// 1. Service Worker Registration for PWA
+if ('serviceWorker' in navigator) {
+  window.addEventListener('load', () => {
+    navigator.serviceWorker.register('./sw.js')
+      .then(reg => console.log('PWA ServiceWorker registered:', reg.scope))
+      .catch(err => console.warn('PWA ServiceWorker registration failed:', err));
+  });
+}
+
+// 2. Blog Data
 const INITIAL_BLOGS = [
   {
     id: 1,
@@ -150,23 +48,22 @@ const INITIAL_BLOGS = [
   }
 ];
 
-// App State Management
+// 3. Application State
 class StoreState {
   constructor() {
-    this.products = JSON.parse(localStorage.getItem('attar_products')) || INITIAL_PRODUCTS;
-    this.blogs = JSON.parse(localStorage.getItem('attar_blogs')) || INITIAL_BLOGS;
+    this.products = StoreDB.getProducts();
+    this.blogs = INITIAL_BLOGS;
     this.cart = JSON.parse(localStorage.getItem('attar_cart')) || [];
     this.currentPage = 'home';
     this.selectedCategory = 'all';
-    this.searchQuery = '';
+    this.appliedCoupon = null;
+    this.discountAmount = 0;
+    this.pendingCheckoutData = null;
   }
 
-  saveProducts() {
-    localStorage.setItem('attar_products', JSON.stringify(this.products));
-  }
-
-  saveBlogs() {
-    localStorage.setItem('attar_blogs', JSON.stringify(this.blogs));
+  reloadProducts() {
+    this.products = StoreDB.getProducts();
+    navigate(this.currentPage);
   }
 
   saveCart() {
@@ -178,8 +75,17 @@ class StoreState {
     const prod = this.products.find(p => p.id === productId);
     if (!prod) return;
 
+    if (prod.stock <= 0) {
+      alert("متاسفانه موجودی این محصول در انبار به اتمام رسیده است.");
+      return;
+    }
+
     const existing = this.cart.find(item => item.id === productId);
     if (existing) {
+      if (existing.quantity + count > prod.stock) {
+        alert(`حداکثر موجودی قابل سفارش برای این کالا ${prod.stock} ${prod.unit} می‌باشد.`);
+        return;
+      }
       existing.quantity += count;
     } else {
       this.cart.push({
@@ -203,6 +109,13 @@ class StoreState {
   updateQuantity(productId, delta) {
     const item = this.cart.find(i => i.id === productId);
     if (!item) return;
+
+    const prod = this.products.find(p => p.id === productId);
+    if (delta > 0 && prod && item.quantity + delta > prod.stock) {
+      alert(`حداکثر موجودی در انبار ${prod.stock} عدد است.`);
+      return;
+    }
+
     item.quantity += delta;
     if (item.quantity <= 0) {
       this.removeFromCart(productId);
@@ -218,40 +131,50 @@ class StoreState {
   getCartCount() {
     return this.cart.reduce((sum, item) => sum + item.quantity, 0);
   }
+
+  clearCart() {
+    this.cart = [];
+    this.appliedCoupon = null;
+    this.discountAmount = 0;
+    this.saveCart();
+  }
 }
 
 const state = new StoreState();
 
-// Utility Formatters
-function formatPrice(num) {
-  return new Intl.NumberFormat('fa-IR').format(num) + ' تومان';
-}
+// Listen to storage sync events
+window.addEventListener('attar_products_updated', () => state.reloadProducts());
+window.addEventListener('attar_data_reset', () => {
+  state.reloadProducts();
+  state.clearCart();
+  updateUserUI();
+});
+window.addEventListener('attar_user_changed', () => updateUserUI());
 
-function showToast(message) {
-  const toast = document.createElement('div');
-  toast.className = 'fixed bottom-6 left-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-stone-700 animate-bounce text-sm font-medium transition-all';
-  toast.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i><span>${message}</span>`;
-  document.body.appendChild(toast);
-  lucide.createIcons();
-  setTimeout(() => {
-    toast.style.opacity = '0';
-    setTimeout(() => toast.remove(), 400);
-  }, 2600);
-}
-
-// Router and Pages Renderers
+// ========================================================
+// Navigation and Page Renderers
+// ========================================================
 function navigate(pageId, extraParam = null) {
   state.currentPage = pageId;
   window.scrollTo({ top: 0, behavior: 'smooth' });
 
-  // Update navigation styling
+  // Update desktop navigation
   document.querySelectorAll('.nav-btn').forEach(btn => {
     if (btn.dataset.page === pageId) {
-      btn.classList.add('text-brand-600', 'font-bold');
+      btn.classList.add('text-brand-600', 'font-extrabold');
       btn.classList.remove('text-stone-600');
     } else {
-      btn.classList.remove('text-brand-600', 'font-bold');
+      btn.classList.remove('text-brand-600', 'font-extrabold');
       btn.classList.add('text-stone-600');
+    }
+  });
+
+  // Update mobile bottom bar
+  document.querySelectorAll('.mobile-nav-item').forEach(btn => {
+    if (btn.dataset.page === pageId) {
+      btn.classList.add('mobile-nav-active');
+    } else {
+      btn.classList.remove('mobile-nav-active');
     }
   });
 
@@ -269,11 +192,11 @@ function navigate(pageId, extraParam = null) {
     case 'blog-detail':
       app.innerHTML = renderBlogDetailPage(extraParam);
       break;
-    case 'admin':
-      app.innerHTML = renderAdminPage();
-      break;
     case 'about':
       app.innerHTML = renderAboutPage();
+      break;
+    case 'contact':
+      app.innerHTML = renderContactPage();
       break;
     default:
       app.innerHTML = renderHomePage();
@@ -281,102 +204,94 @@ function navigate(pageId, extraParam = null) {
   lucide.createIcons();
 }
 
+function toggleMobileMenu() {
+  const m = document.getElementById('mobileMenu');
+  m.classList.toggle('hidden');
+}
+
 // ========================
-// PAGE 1: LANDING PAGE
+// PAGE 1: HOME LANDING
 // ========================
 function renderHomePage() {
   const featured = state.products.slice(0, 4);
   const blogs = state.blogs.slice(0, 3);
 
   return `
-    <!-- Hero Section -->
-    <section class="relative hero-pattern pt-12 pb-24 overflow-hidden">
+    <!-- Hero Banner -->
+    <section class="relative hero-pattern pt-8 sm:pt-14 pb-20 overflow-hidden">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 lg:grid-cols-12 gap-12 items-center">
+        <div class="grid grid-cols-1 lg:grid-cols-12 gap-10 items-center">
           
-          <!-- Text Content -->
           <div class="lg:col-span-7 space-y-6 text-center lg:text-right">
-            <div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-brand-100 text-brand-600 text-xs font-bold">
+            <div class="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-brand-100 text-brand-600 text-xs font-bold shadow-sm">
               <span class="w-2 h-2 rounded-full bg-brand-500 animate-pulse"></span>
-              تازه‌ترین بار فصل رسید؛ برداشت امسال با ضمانت تست
+              <span>برداشت تازه امسال مزارع ایران • ضمانت اصالت ۱۰۰٪</span>
             </div>
-            
-            <h1 class="text-4xl sm:text-5xl lg:text-6xl font-black text-stone-900 tracking-tight leading-tight sm:leading-snug">
-              طعم اصیل طبیعت، <br>
-              <span class="text-transparent bg-clip-text bg-gradient-to-r from-brand-600 to-brand-amber">خشکبار و گیاهان دارویی اعلا</span>
+
+            <h1 class="text-3xl sm:text-5xl lg:text-6xl font-black text-stone-900 leading-tight">
+              عطر اصیل مزارع، <br class="hidden sm:inline">
+              <span class="text-transparent bg-clip-text bg-gradient-to-l from-brand-600 via-brand-500 to-brand-amber">طراوت بی‌پیرایه طبیعت</span>
             </h1>
 
-            <p class="text-stone-600 text-base sm:text-lg leading-relaxed max-w-2xl mx-auto lg:mx-0">
-              مستقیماً از باغداران رفسنجان و مزارع زعفران قائنات بدون واسطه. دستچین شده با وسواس بالا، بسته‌بندی بهداشتی ضد رطوبت و ارسال فوری به تمام ایران.
+            <p class="text-stone-600 text-sm sm:text-base leading-relaxed max-w-2xl mx-auto lg:mx-0">
+              از پسته دستچین باغات رفسنجان تا طلای سرخ قائنات و دمنوش‌های کوهی اشکورات؛ مستقیم از دستان کشاورز با استانداردهای بهداشتی روز در سفره شما.
             </p>
 
-            <!-- CTA Buttons -->
-            <div class="flex flex-col sm:flex-row items-center justify-center lg:justify-start gap-4 pt-4">
-              <button onclick="navigate('shop')" class="w-full sm:w-auto px-8 py-4 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-2xl shadow-xl shadow-brand-600/30 transition-all flex items-center justify-center gap-3 group">
-                <span>مشاهده فروشگاه و خرید</span>
-                <i data-lucide="arrow-left" class="w-5 h-5 group-hover:-translate-x-1 transition-transform"></i>
+            <div class="flex flex-wrap items-center justify-center lg:justify-start gap-3 pt-2">
+              <button onclick="navigate('shop')" class="px-7 py-3.5 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-2xl shadow-xl shadow-brand-600/25 transition-all flex items-center gap-2 text-sm">
+                <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+                <span>مشاهده محصولات و خرید</span>
               </button>
-              <button onclick="navigate('blog')" class="w-full sm:w-auto px-7 py-4 bg-white hover:bg-stone-100 text-stone-800 font-bold rounded-2xl border border-stone-200 shadow-sm transition-all flex items-center justify-center gap-2">
-                <i data-lucide="book-open" class="w-5 h-5 text-brand-amber"></i>
-                <span>دانشنامه خواص گیاهی</span>
+              <button onclick="navigate('about')" class="px-6 py-3.5 bg-white hover:bg-stone-100 text-stone-700 font-bold rounded-2xl border border-stone-200 transition-all text-sm">
+                داستان عطارباشی
               </button>
             </div>
 
-            <!-- Stats Bar -->
-            <div class="grid grid-cols-3 gap-4 pt-8 border-t border-stone-200/80">
+            <!-- Features Pill List -->
+            <div class="grid grid-cols-3 gap-3 pt-6 border-t border-stone-200/60 max-w-lg mx-auto lg:mx-0 text-right">
               <div>
-                <span class="block text-2xl font-black text-stone-900">+۱۲,۰۰۰</span>
-                <span class="text-xs text-stone-500">مشتری وفادار</span>
+                <span class="font-black text-lg text-brand-600 block">۱۰۰٪</span>
+                <span class="text-[11px] text-stone-500 font-bold">ارگانیک و آزمایشگاهی</span>
               </div>
               <div>
-                <span class="block text-2xl font-black text-stone-900">۱۰۰٪</span>
-                <span class="text-xs text-stone-500">تضمین تازگی و اصالت</span>
+                <span class="font-black text-lg text-brand-600 block">۷ روز</span>
+                <span class="text-[11px] text-stone-500 font-bold">ضمانت بازگشت وجه</span>
               </div>
               <div>
-                <span class="block text-2xl font-black text-stone-900">+۱۵۰</span>
-                <span class="text-xs text-stone-500">قلم محصول ارگانیک</span>
+                <span class="font-black text-lg text-brand-600 block">پست پیشتاز</span>
+                <span class="text-[11px] text-stone-500 font-bold">ارسال امن سراسر ایران</span>
               </div>
             </div>
-
           </div>
 
-          <!-- Hero Visual & Cards -->
+          <!-- Hero Image Collage -->
           <div class="lg:col-span-5 relative">
-            <div class="relative mx-auto max-w-md lg:max-w-none">
-              <!-- Glow background -->
-              <div class="absolute -inset-4 bg-gradient-to-tr from-brand-accent/30 to-brand-500/20 rounded-3xl blur-2xl"></div>
-              
-              <div class="relative rounded-3xl overflow-hidden shadow-2xl border-4 border-white bg-white">
-                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=1000&q=80" 
-                  alt="خشکبار و پسته اعلا" 
-                  class="w-full h-[430px] object-cover hover:scale-105 transition-transform duration-700">
-                <div class="absolute inset-0 bg-gradient-to-t from-black/80 via-black/20 to-transparent flex flex-col justify-end p-6 text-white">
-                  <div class="flex items-center gap-2 text-brand-gold text-xs font-semibold mb-1">
-                    <i data-lucide="sparkles" class="w-4 h-4"></i>
-                    <span>برگزیده این هفته</span>
-                  </div>
-                  <h3 class="text-xl font-bold">پسته اکبری خندان رفسنجان</h3>
-                  <p class="text-xs text-stone-200 mt-1">تضمین بالاترین انس و کیفیت با تایید کارشناس آزمایشگاه</p>
-                  <div class="mt-4 flex items-center justify-between">
-                    <span class="text-lg font-black text-brand-gold">۹۴۰,۰۰۰ تومان</span>
-                    <button onclick="state.addToCart(1)" class="px-4 py-2 bg-brand-500 hover:bg-brand-600 text-white text-xs font-bold rounded-xl transition-all shadow-md">
-                      افزودن به سبد
-                    </button>
-                  </div>
-                </div>
+            <div class="relative mx-auto max-w-sm sm:max-w-md">
+              <div class="rounded-3xl overflow-hidden shadow-2xl border-4 border-white aspect-[4/5] bg-stone-100">
+                <img src="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80" alt="پسته اکبری اعلا" class="w-full h-full object-cover">
               </div>
 
-              <!-- Floating highlight cards -->
-              <div class="absolute -bottom-6 -right-6 bg-white p-4 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-3 hidden sm:flex">
-                <div class="w-12 h-12 rounded-xl bg-amber-50 flex items-center justify-center text-amber-600">
-                  <i data-lucide="award" class="w-6 h-6"></i>
+              <!-- Floating Card 1 -->
+              <div class="absolute -top-4 -right-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-amber-100 text-amber-700 flex items-center justify-center font-black">
+                  <i data-lucide="award" class="w-5 h-5"></i>
                 </div>
                 <div>
-                  <h5 class="text-xs font-bold text-stone-900">نشان درجه ۱ استاندارد</h5>
-                  <p class="text-[11px] text-stone-400">بدون مواد نگهدارنده و آفلاتوکسین</p>
+                  <span class="font-black text-xs text-stone-900 block">زعفران سوپر نگین</span>
+                  <span class="text-[10px] text-stone-400">تضمین رنگ‌دهی و خلوص</span>
                 </div>
               </div>
 
+              <!-- Floating Card 2 -->
+              <div class="absolute -bottom-4 -left-4 bg-white/95 backdrop-blur-md p-3.5 rounded-2xl shadow-xl border border-stone-100 flex items-center gap-3">
+                <div class="w-10 h-10 rounded-xl bg-emerald-100 text-emerald-700 flex items-center justify-center font-black">
+                  <i data-lucide="check-check" class="w-5 h-5"></i>
+                </div>
+                <div>
+                  <span class="font-black text-xs text-stone-900 block">بسته‌بندی زیپ‌کیپ و بهداشتی</span>
+                  <span class="text-[10px] text-stone-400">حفظ ماندگاری عطر گیاهان</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -384,247 +299,206 @@ function renderHomePage() {
       </div>
     </section>
 
-    <!-- Categories Strip -->
-    <section class="py-12 bg-white border-y border-stone-100">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h2 class="text-xl font-bold text-stone-900 mb-8 text-center sm:text-right">دسته‌بندی‌های محبوب عطارباشی</h2>
-        
-        <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
-          <div onclick="filterShopCategory('خشکبار و مغزیجات')" class="p-6 rounded-2xl bg-stone-50 hover:bg-brand-50 border border-stone-100 hover:border-brand-200 cursor-pointer transition-all text-center group">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-amber-100/70 text-amber-700 flex items-center justify-center group-hover:scale-110 transition-transform mb-3">
-              <i data-lucide="nut" class="w-8 h-8"></i>
-            </div>
-            <h4 class="font-bold text-sm text-stone-800">خشکبار و مغزیجات</h4>
-            <span class="text-[11px] text-stone-400">پسته، بادام، گردو، فندق</span>
-          </div>
-
-          <div onclick="filterShopCategory('زعفران و هل')" class="p-6 rounded-2xl bg-stone-50 hover:bg-brand-50 border border-stone-100 hover:border-brand-200 cursor-pointer transition-all text-center group">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-rose-100/70 text-rose-700 flex items-center justify-center group-hover:scale-110 transition-transform mb-3">
-              <i data-lucide="flower-2" class="w-8 h-8"></i>
-            </div>
-            <h4 class="font-bold text-sm text-stone-800">زعفران و هل</h4>
-            <span class="text-[11px] text-stone-400">سوپر نگین قائنات و هل اکبر</span>
-          </div>
-
-          <div onclick="filterShopCategory('دمنوش و گیاهان دارویی')" class="p-6 rounded-2xl bg-stone-50 hover:bg-brand-50 border border-stone-100 hover:border-brand-200 cursor-pointer transition-all text-center group">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-emerald-100/70 text-emerald-700 flex items-center justify-center group-hover:scale-110 transition-transform mb-3">
-              <i data-lucide="coffee" class="w-8 h-8"></i>
-            </div>
-            <h4 class="font-bold text-sm text-stone-800">دمنوش‌های ارگانیک</h4>
-            <span class="text-[11px] text-stone-400">گل‌گاوزبان، بابونه، آویشن</span>
-          </div>
-
-          <div onclick="filterShopCategory('روغن‌ها و عرقیات')" class="p-6 rounded-2xl bg-stone-50 hover:bg-brand-50 border border-stone-100 hover:border-brand-200 cursor-pointer transition-all text-center group">
-            <div class="w-16 h-16 mx-auto rounded-2xl bg-indigo-100/70 text-indigo-700 flex items-center justify-center group-hover:scale-110 transition-transform mb-3">
-              <i data-lucide="droplet" class="w-8 h-8"></i>
-            </div>
-            <h4 class="font-bold text-sm text-stone-800">روغن‌ها و عرقیات</h4>
-            <span class="text-[11px] text-stone-400">روغن آرگان، سیاه‌دانه، گلاب</span>
-          </div>
-        </div>
-      </div>
-    </section>
-
-    <!-- Featured Products Section -->
-    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
+    <!-- Category Quick Links -->
+    <section class="py-10 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-6">
         <div>
-          <span class="text-xs font-bold text-brand-amber uppercase tracking-wider">دستچین تازه</span>
-          <h2 class="text-3xl font-black text-stone-900 mt-1">محصولات منتخب و پرفروش</h2>
+          <h2 class="text-xl sm:text-2xl font-black text-stone-900">دسته‌بندی‌های محبوب عطاری</h2>
+          <p class="text-xs text-stone-500 mt-1">تنوع بی‌نظیر خشکبار اعلا و گیاهان سنتی</p>
         </div>
-        <button onclick="navigate('shop')" class="text-sm font-bold text-brand-600 hover:text-brand-500 flex items-center gap-1">
-          <span>مشاهده همه محصولات</span>
-          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        <button onclick="navigate('shop')" class="text-xs font-bold text-brand-600 hover:text-brand-500 flex items-center gap-1">
+          <span>مشاهده همه</span>
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        ${featured.map(product => renderProductCard(product)).join('')}
+      <div class="grid grid-cols-2 sm:grid-cols-4 gap-4">
+        <div onclick="filterShopCategory('خشکبار و مغزیجات')" class="group cursor-pointer p-4 bg-white rounded-2xl border border-stone-200/80 hover:border-brand-300 hover:shadow-lg transition-all text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-amber-50 text-amber-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            🥜
+          </div>
+          <h3 class="font-bold text-sm text-stone-900 group-hover:text-brand-600 transition-colors">خشکبار و مغزیجات</h3>
+          <span class="text-[11px] text-stone-400">پسته، بادام، گردو تویسرکان</span>
+        </div>
+
+        <div onclick="filterShopCategory('زعفران و هل')" class="group cursor-pointer p-4 bg-white rounded-2xl border border-stone-200/80 hover:border-brand-300 hover:shadow-lg transition-all text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-rose-50 text-rose-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            🌸
+          </div>
+          <h3 class="font-bold text-sm text-stone-900 group-hover:text-brand-600 transition-colors">زعفران و هل</h3>
+          <span class="text-[11px] text-stone-400">زعفران نگین قائنات، هل اکبر</span>
+        </div>
+
+        <div onclick="filterShopCategory('دمنوش و گیاهان دارویی')" class="group cursor-pointer p-4 bg-white rounded-2xl border border-stone-200/80 hover:border-brand-300 hover:shadow-lg transition-all text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-emerald-50 text-emerald-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            🍵
+          </div>
+          <h3 class="font-bold text-sm text-stone-900 group-hover:text-brand-600 transition-colors">دمنوش و گیاهان دارویی</h3>
+          <span class="text-[11px] text-stone-400">گل گاوزبان، گل محمدی، بابونه</span>
+        </div>
+
+        <div onclick="filterShopCategory('روغن‌ها و عرقیات')" class="group cursor-pointer p-4 bg-white rounded-2xl border border-stone-200/80 hover:border-brand-300 hover:shadow-lg transition-all text-center">
+          <div class="w-14 h-14 mx-auto rounded-2xl bg-purple-50 text-purple-700 flex items-center justify-center mb-3 group-hover:scale-110 transition-transform">
+            🌿
+          </div>
+          <h3 class="font-bold text-sm text-stone-900 group-hover:text-brand-600 transition-colors">روغن‌ها و عرقیات</h3>
+          <span class="text-[11px] text-stone-400">روغن آرگان، سیاهدانه، گلاب</span>
+        </div>
       </div>
     </section>
 
-    <!-- Value Proposition Banner -->
-    <section class="bg-gradient-to-r from-brand-600 to-brand-700 text-white py-16">
+    <!-- Featured Products Grid -->
+    <section class="py-12 bg-white border-y border-stone-200/80">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <div class="grid grid-cols-1 md:grid-cols-4 gap-8 text-center md:text-right">
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-brand-gold">
-              <i data-lucide="package-check" class="w-7 h-7"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-base">بسته‌بندی زیپ‌کیپ وکیوم</h4>
-              <p class="text-xs text-brand-100/80">حفظ ۱۰۰٪ تازگی، تردی و بوی عطر</p>
-            </div>
+        <div class="flex items-center justify-between mb-8">
+          <div>
+            <span class="text-xs font-bold text-brand-amber">دستچین ویژه عطارباشی</span>
+            <h2 class="text-2xl sm:text-3xl font-black text-stone-900">محصولات منتخب و پرفروش</h2>
           </div>
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-brand-gold">
-              <i data-lucide="badge-percent" class="w-7 h-7"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-base">قیمت منصفانه و بی‌واسطه</h4>
-              <p class="text-xs text-brand-100/80">ارتباط مستقیم با کشاورزان بومی</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-brand-gold">
-              <i data-lucide="clock" class="w-7 h-7"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-base">تحویل سریع ۲۴ تا ۴۸ ساعته</h4>
-              <p class="text-xs text-brand-100/80">ارسال با پست پیشتاز و تیپاکس به سراسر ایران</p>
-            </div>
-          </div>
-          <div class="flex items-center gap-4 justify-center md:justify-start">
-            <div class="w-14 h-14 rounded-2xl bg-white/10 flex items-center justify-center text-brand-gold">
-              <i data-lucide="phone-call" class="w-7 h-7"></i>
-            </div>
-            <div>
-              <h4 class="font-bold text-base">مشاوره تخصصی عطاری</h4>
-              <p class="text-xs text-brand-100/80">پاسخگویی به سوالات طبع و مزاج شناسی</p>
-            </div>
+          <button onclick="navigate('shop')" class="text-xs font-bold text-brand-600 hover:text-brand-500 flex items-center gap-1">
+            <span>دیدن تمام کالاها</span>
+            <i data-lucide="arrow-left" class="w-4 h-4"></i>
+          </button>
+        </div>
+
+        <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
+          ${featured.map(renderProductCard).join('')}
+        </div>
+      </div>
+    </section>
+
+    <!-- Trust Banner -->
+    <section class="py-14 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="bg-gradient-to-r from-brand-700 via-brand-600 to-brand-500 text-white rounded-3xl p-8 sm:p-12 shadow-2xl relative overflow-hidden">
+        <div class="relative z-10 max-w-xl space-y-4">
+          <span class="bg-brand-gold text-stone-900 text-[10px] font-black px-3 py-1 rounded-full uppercase">تخفیف ویژه سفارش اول</span>
+          <h3 class="text-2xl sm:text-3xl font-black leading-tight">با خیال راحت، دستچین باغ را به خانه ببرید</h3>
+          <p class="text-xs sm:text-sm text-brand-100 leading-relaxed">
+            کد تخفیف <code class="bg-white/20 px-2 py-0.5 rounded font-mono font-bold text-white">ATTAR10</code> را در بخش تسویه حساب وارد کنید و ۱۰٪ تخفیف بدون محدودیت روی سفارش خود دریافت کنید.
+          </p>
+          <div class="pt-2">
+            <button onclick="navigate('shop')" class="px-6 py-3 bg-white text-brand-700 hover:bg-brand-50 font-black rounded-xl text-xs shadow transition-all">
+              شروع خرید آنلاین
+            </button>
           </div>
         </div>
       </div>
     </section>
 
-    <!-- Latest Blogs Section -->
-    <section class="py-20 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-      <div class="flex flex-col sm:flex-row items-start sm:items-end justify-between mb-12 gap-4">
+    <!-- Health Journal / Blogs -->
+    <section class="py-12 max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+      <div class="flex items-center justify-between mb-8">
         <div>
-          <span class="text-xs font-bold text-brand-amber uppercase tracking-wider">دانشنامه سلامت</span>
-          <h2 class="text-3xl font-black text-stone-900 mt-1">تازه‌ترین مقالات طب سنتی و تغذیه</h2>
+          <span class="text-xs font-bold text-brand-amber">دانش عطاری سنتی</span>
+          <h2 class="text-2xl sm:text-3xl font-black text-stone-900">مجله سلامت و خواص گیاهان</h2>
         </div>
-        <button onclick="navigate('blog')" class="text-sm font-bold text-brand-600 hover:text-brand-500 flex items-center gap-1">
-          <span>مشاهده همه مقالات</span>
-          <i data-lucide="chevron-left" class="w-4 h-4"></i>
+        <button onclick="navigate('blog')" class="text-xs font-bold text-brand-600 hover:text-brand-500 flex items-center gap-1">
+          <span>آرشیو مقالات</span>
+          <i data-lucide="arrow-left" class="w-4 h-4"></i>
         </button>
       </div>
 
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        ${blogs.map(blog => renderBlogCard(blog)).join('')}
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        ${blogs.map(renderBlogCard).join('')}
       </div>
     </section>
   `;
 }
 
 // ========================
-// PAGE 2: SHOP PAGE
+// PAGE 2: SHOP CATALOG
 // ========================
 function renderShopPage() {
-  const categories = ['همه', 'خشکبار و مغزیجات', 'زعفران و هل', 'دمنوش و گیاهان دارویی', 'روغن‌ها و عرقیات'];
-  
-  const filteredProducts = state.selectedCategory === 'all' || state.selectedCategory === 'همه'
-    ? state.products
-    : state.products.filter(p => p.category === state.selectedCategory);
+  const categories = ['all', 'خشکبار و مغزیجات', 'زعفران و هل', 'دمنوش و گیاهان دارویی', 'روغن‌ها و عرقیات'];
+  let list = state.products;
+
+  if (state.selectedCategory !== 'all') {
+    list = list.filter(p => p.category === state.selectedCategory);
+  }
 
   return `
-    <div class="bg-stone-100/60 py-10 border-b border-stone-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-black text-stone-900">فروشگاه عطارباشی</h1>
-        <p class="text-sm text-stone-500 mt-1">مشاهده، بررسی و خرید آنلاین محصولات اصیل و تازه</p>
+    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8 sm:py-12">
+      <!-- Title -->
+      <div class="text-center space-y-3 mb-8">
+        <h1 class="text-2xl sm:text-4xl font-black text-stone-900">فروشگاه جامع خشکبار و عطاری</h1>
+        <p class="text-xs sm:text-sm text-stone-500 max-w-lg mx-auto">تمام محصولات با ضمانت تازگی، عدم استفاده از مواد نگهدارنده و ارسال با بسته‌بندی پلمپ به دست شما می‌رسد.</p>
       </div>
-    </div>
 
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10">
-      <!-- Filter and categories strip -->
-      <div class="flex flex-wrap items-center justify-between gap-4 mb-8">
-        <!-- Categories tabs -->
-        <div class="flex flex-wrap gap-2">
-          ${categories.map(cat => `
-            <button onclick="filterShopCategory('${cat}')" 
-              class="px-4 py-2 rounded-xl text-xs font-bold transition-all ${
-                (state.selectedCategory === cat || (cat === 'همه' && state.selectedCategory === 'all'))
-                  ? 'bg-brand-600 text-white shadow-md'
-                  : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'
-              }">
-              ${cat}
-            </button>
-          `).join('')}
-        </div>
-
-        <!-- Counter info -->
-        <div class="text-xs text-stone-500 font-medium">
-          نمایش ${filteredProducts.length} محصول
-        </div>
+      <!-- Filter Buttons (Scrollable on mobile) -->
+      <div class="flex items-center gap-2 overflow-x-auto pb-4 mb-8 justify-start sm:justify-center custom-scroll">
+        ${categories.map(cat => `
+          <button onclick="filterShopCategory('${cat}')" class="px-4 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all ${state.selectedCategory === cat ? 'bg-brand-600 text-white shadow-md' : 'bg-white text-stone-600 hover:bg-stone-100 border border-stone-200'}">
+            ${cat === 'all' ? 'همه محصولات' : cat}
+          </button>
+        `).join('')}
       </div>
 
       <!-- Products Grid -->
       <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        ${filteredProducts.length > 0 
-          ? filteredProducts.map(p => renderProductCard(p)).join('')
-          : `<div class="col-span-full py-16 text-center text-stone-400">
-               <i data-lucide="package-x" class="w-12 h-12 mx-auto mb-2 opacity-50"></i>
-               محصولی در این دسته‌بندی یافت نشد.
-             </div>`
-        }
+        ${list.map(renderProductCard).join('')}
       </div>
     </div>
   `;
 }
 
-function filterShopCategory(cat) {
-  state.selectedCategory = (cat === 'همه') ? 'all' : cat;
+function filterShopCategory(category) {
+  state.selectedCategory = category;
   navigate('shop');
 }
 
 // ========================
-// PAGE 3: BLOG PAGE
+// PAGE 3: BLOGS & DETAIL
 // ========================
 function renderBlogPage() {
   return `
-    <div class="bg-stone-100/60 py-10 border-b border-stone-200">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-        <h1 class="text-3xl font-black text-stone-900">مجله تندرستی و عطاری</h1>
-        <p class="text-sm text-stone-500 mt-1">آموزش‌ها و مقالات علمی درباره گیاهان دارویی، تغذیه سالم و رازهای طب سنتی</p>
-      </div>
-    </div>
-
     <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-      <div class="grid grid-cols-1 md:grid-cols-3 gap-8">
-        ${state.blogs.map(blog => renderBlogCard(blog)).join('')}
+      <div class="text-center space-y-3 mb-10">
+        <h1 class="text-3xl sm:text-4xl font-black text-stone-900">مجله خواص درمانی و سلامت عطارباشی</h1>
+        <p class="text-xs sm:text-sm text-stone-500 max-w-lg mx-auto">مقالات کاربردی بر پایه طب سنتی و تحقیقات علمی روز پیرامون دمنوش‌ها، مغزیجات و عرقیات اصیل.</p>
+      </div>
+      <div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+        ${state.blogs.map(renderBlogCard).join('')}
       </div>
     </div>
   `;
 }
 
-function renderBlogDetailPage(blogId) {
-  const blog = state.blogs.find(b => b.id === Number(blogId)) || state.blogs[0];
+function renderBlogDetailPage(id) {
+  const article = state.blogs.find(b => b.id === Number(id)) || state.blogs[0];
   return `
-    <article class="max-w-4xl mx-auto px-4 sm:px-6 py-12">
-      <button onclick="navigate('blog')" class="inline-flex items-center gap-2 text-xs font-bold text-brand-600 hover:text-brand-500 mb-6">
+    <article class="max-w-3xl mx-auto px-4 sm:px-6 py-12 space-y-6">
+      <button onclick="navigate('blog')" class="text-xs font-bold text-stone-500 hover:text-brand-600 flex items-center gap-1.5 mb-4">
         <i data-lucide="arrow-right" class="w-4 h-4"></i>
-        <span>بازگشت به مجله مقالات</span>
+        <span>بازگشت به لیست مقالات</span>
       </button>
 
-      <span class="inline-block px-3 py-1 bg-brand-100 text-brand-700 text-xs font-bold rounded-full mb-4">${blog.category}</span>
-      <h1 class="text-3xl sm:text-4xl font-black text-stone-900 leading-tight mb-4">${blog.title}</h1>
-      
-      <div class="flex items-center gap-4 text-xs text-stone-400 pb-8 border-b border-stone-200 mb-8">
-        <span class="flex items-center gap-1"><i data-lucide="calendar" class="w-3.5 h-3.5"></i> ${blog.date}</span>
-        <span class="flex items-center gap-1"><i data-lucide="clock" class="w-3.5 h-3.5"></i> زمان مطالعه: ${blog.readTime}</span>
-      </div>
-
-      <div class="rounded-3xl overflow-hidden shadow-xl mb-10">
-        <img src="${blog.image}" alt="${blog.title}" class="w-full h-[400px] object-cover">
-      </div>
-
-      <div class="prose prose-stone max-w-none text-stone-700 leading-loose text-base space-y-6">
-        <p class="text-lg font-medium text-stone-900 leading-relaxed bg-brand-50/60 p-6 rounded-2xl border-r-4 border-brand-500">
-          ${blog.excerpt}
-        </p>
-        <p>${blog.content}</p>
-        <p>
-          گیاهان دارویی از گذشته‌های دور رکن اصلی درمان و تندرستی نیاکان ما بوده‌اند. با شناخت دقیق مزاج و استفاده از محصولات خالص و باکیفیت می‌توانید سلامتی پایدار را به جسم و روان خود هدیه دهید. تمام محصولات ذکر شده در این مقاله را می‌توانید با بالاترین خلوص از عطارباشی تهیه کنید.
-        </p>
-      </div>
-
-      <div class="mt-12 p-6 bg-stone-100 rounded-2xl flex flex-col sm:flex-row items-center justify-between gap-4">
-        <div>
-          <h4 class="font-bold text-stone-900">سوالی در مورد این مقاله یا گیاه دارویی دارید؟</h4>
-          <p class="text-xs text-stone-500">کارشناسان عطارباشی آماده پاسخگویی و مشاوره رایگان به شما هستند.</p>
+      <div class="space-y-3">
+        <div class="flex items-center gap-2 text-xs text-brand-amber font-bold">
+          <span>${article.category}</span>
+          <span>•</span>
+          <span>زمان مطالعه: ${article.readTime}</span>
         </div>
-        <button onclick="navigate('shop')" class="px-5 py-2.5 bg-brand-600 text-white text-xs font-bold rounded-xl shadow-md">
-          خرید گیاهان این مقاله
+        <h1 class="text-2xl sm:text-3xl font-black text-stone-900 leading-snug">${article.title}</h1>
+        <p class="text-xs text-stone-400">تاریخ انتشار: ${article.date}</p>
+      </div>
+
+      <div class="rounded-3xl overflow-hidden aspect-video bg-stone-100 shadow-xl">
+        <img src="${article.image}" alt="${article.title}" class="w-full h-full object-cover">
+      </div>
+
+      <div class="prose prose-stone max-w-none text-stone-700 text-sm leading-relaxed space-y-4 pt-4">
+        <p class="font-bold text-stone-800 text-base leading-relaxed">${article.excerpt}</p>
+        <p>${article.content}</p>
+        <p>مصرف گیاهان دارویی اگرچه منشاء طبیعی دارند اما استفاده منظم و هدفمند از آن‌ها بر اساس طبع فردی نیازمند آگاهی است. عطارباشی می‌کوشد بهترین کیفیت گیاهان دارویی را بدون اسانس مصنوعی در اختیار شما قرار دهد.</p>
+      </div>
+
+      <div class="p-6 bg-brand-50 rounded-3xl border border-brand-100 flex items-center justify-between mt-8">
+        <div>
+          <h4 class="font-bold text-sm text-brand-700">علاقه‌مند به تهیه این گیاه دارویی هستید؟</h4>
+          <p class="text-xs text-stone-600 mt-1">گیاهان کوهی دستچین شده را از فروشگاه عطارباشی سفارش دهید.</p>
+        </div>
+        <button onclick="navigate('shop')" class="px-4 py-2 bg-brand-600 text-white font-bold rounded-xl text-xs hover:bg-brand-500 transition-all">
+          مشاهده در فروشگاه
         </button>
       </div>
     </article>
@@ -632,186 +506,7 @@ function renderBlogDetailPage(blogId) {
 }
 
 // ========================
-// PAGE 4: ADMIN DASHBOARD
-// ========================
-function renderAdminPage() {
-  const totalStock = state.products.reduce((acc, p) => acc + p.stock, 0);
-  const totalValue = state.products.reduce((acc, p) => acc + (p.price * p.stock), 0);
-
-  return `
-    <div class="bg-stone-900 text-white py-8">
-      <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 flex flex-col sm:flex-row sm:items-center justify-between gap-4">
-        <div>
-          <div class="flex items-center gap-2">
-            <span class="w-2.5 h-2.5 rounded-full bg-emerald-400"></span>
-            <span class="text-xs text-stone-400 font-medium">سیستم مدیریت محتوا و فروشگاه</span>
-          </div>
-          <h1 class="text-2xl font-black text-white mt-1">پیشخوان مدیریت عطارباشی</h1>
-        </div>
-        <button onclick="openAddProductModal()" class="px-5 py-2.5 bg-brand-gold hover:bg-amber-400 text-stone-900 font-bold rounded-xl text-xs flex items-center justify-center gap-2 shadow-lg transition-all">
-          <i data-lucide="plus" class="w-4 h-4"></i>
-          <span>افزودن محصول جدید</span>
-        </button>
-      </div>
-    </div>
-
-    <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-10 space-y-10">
-      
-      <!-- KPI Stats Cards -->
-      <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-6">
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center">
-            <i data-lucide="boxes" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <span class="text-xs text-stone-400 font-medium">تنوع محصولات</span>
-            <h3 class="text-2xl font-black text-stone-900 mt-0.5">${state.products.length} قلم</h3>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-amber-50 text-brand-amber flex items-center justify-center">
-            <i data-lucide="archive" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <span class="text-xs text-stone-400 font-medium">کل موجودی انبار</span>
-            <h3 class="text-2xl font-black text-stone-900 mt-0.5">${totalStock} واحد</h3>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-emerald-50 text-emerald-600 flex items-center justify-center">
-            <i data-lucide="coins" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <span class="text-xs text-stone-400 font-medium">ارزش موجودی کالا</span>
-            <h3 class="text-xl font-black text-stone-900 mt-0.5">${formatPrice(totalValue)}</h3>
-          </div>
-        </div>
-
-        <div class="bg-white p-6 rounded-2xl border border-stone-200/80 shadow-sm flex items-center gap-4">
-          <div class="w-12 h-12 rounded-xl bg-indigo-50 text-indigo-600 flex items-center justify-center">
-            <i data-lucide="file-text" class="w-6 h-6"></i>
-          </div>
-          <div>
-            <span class="text-xs text-stone-400 font-medium">تعداد مقالات منتشر شده</span>
-            <h3 class="text-2xl font-black text-stone-900 mt-0.5">${state.blogs.length} مقاله</h3>
-          </div>
-        </div>
-      </div>
-
-      <!-- Products Management Table -->
-      <div class="bg-white rounded-2xl border border-stone-200/80 shadow-sm overflow-hidden">
-        <div class="p-6 border-b border-stone-100 flex items-center justify-between">
-          <h2 class="text-lg font-bold text-stone-900">لیست محصولات و انبارداری</h2>
-          <span class="text-xs text-stone-400">امکان ویرایش و حذف آنی</span>
-        </div>
-
-        <div class="overflow-x-auto">
-          <table class="w-full text-right text-xs">
-            <thead class="bg-stone-50 text-stone-500 font-bold border-b border-stone-200">
-              <tr>
-                <th class="p-4">تصویر</th>
-                <th class="p-4">عنوان محصول</th>
-                <th class="p-4">دسته‌بندی</th>
-                <th class="p-4">قیمت واحد</th>
-                <th class="p-4">موجودی انبار</th>
-                <th class="p-4 text-center">عملیات</th>
-              </tr>
-            </thead>
-            <tbody class="divide-y divide-stone-100">
-              ${state.products.map(p => `
-                <tr class="hover:bg-stone-50/70 transition-colors">
-                  <td class="p-4">
-                    <img src="${p.image}" class="w-12 h-12 object-cover rounded-xl border border-stone-200">
-                  </td>
-                  <td class="p-4 font-bold text-stone-900">${p.title}</td>
-                  <td class="p-4">
-                    <span class="px-2.5 py-1 rounded-full text-[10px] font-bold bg-stone-100 text-stone-700">${p.category}</span>
-                  </td>
-                  <td class="p-4 font-bold text-brand-600">${formatPrice(p.price)}</td>
-                  <td class="p-4">
-                    <span class="font-bold ${p.stock < 10 ? 'text-rose-600' : 'text-stone-700'}">${p.stock} ${p.unit}</span>
-                  </td>
-                  <td class="p-4 text-center">
-                    <button onclick="deleteProduct(${p.id})" class="p-2 text-rose-500 hover:bg-rose-50 rounded-lg transition-all" title="حذف کالا">
-                      <i data-lucide="trash-2" class="w-4 h-4"></i>
-                    </button>
-                  </td>
-                </tr>
-              `).join('')}
-            </tbody>
-          </table>
-        </div>
-      </div>
-
-    </div>
-
-    <!-- ADD PRODUCT MODAL -->
-    <div id="addProductModal" class="fixed inset-0 z-50 hidden flex items-center justify-center p-4">
-      <div class="absolute inset-0 bg-stone-900/60 backdrop-blur-sm" onclick="closeAddProductModal()"></div>
-      <div class="relative bg-white w-full max-w-lg rounded-2xl shadow-2xl p-6 overflow-hidden">
-        <div class="flex items-center justify-between pb-4 border-b border-stone-100 mb-4">
-          <h3 class="font-bold text-base text-stone-900">تعریف محصول جدید عطاری و خشکبار</h3>
-          <button onclick="closeAddProductModal()" class="text-stone-400 hover:text-stone-700"><i data-lucide="x" class="w-5 h-5"></i></button>
-        </div>
-
-        <form id="addProductForm" onsubmit="handleCreateProduct(event)" class="space-y-4 text-xs">
-          <div>
-            <label class="block font-bold text-stone-700 mb-1">نام محصول</label>
-            <input type="text" id="newTitle" required placeholder="مثال: فندق دستچین طارم" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block font-bold text-stone-700 mb-1">دسته‌بندی</label>
-              <select id="newCategory" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-                <option value="خشکبار و مغزیجات">خشکبار و مغزیجات</option>
-                <option value="زعفران و هل">زعفران و هل</option>
-                <option value="دمنوش و گیاهان دارویی">دمنوش و گیاهان دارویی</option>
-                <option value="روغن‌ها و عرقیات">روغن‌ها و عرقیات</option>
-              </select>
-            </div>
-            <div>
-              <label class="block font-bold text-stone-700 mb-1">واحد اندازه‌گیری</label>
-              <input type="text" id="newUnit" required placeholder="مثال: کیلوگرم یا بسته" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-            </div>
-          </div>
-
-          <div class="grid grid-cols-2 gap-3">
-            <div>
-              <label class="block font-bold text-stone-700 mb-1">قیمت (تومان)</label>
-              <input type="number" id="newPrice" required placeholder="450000" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-            </div>
-            <div>
-              <label class="block font-bold text-stone-700 mb-1">موجودی اولیه</label>
-              <input type="number" id="newStock" required placeholder="30" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-            </div>
-          </div>
-
-          <div>
-            <label class="block font-bold text-stone-700 mb-1">آدرس عکس اینترنتی (Image URL)</label>
-            <input type="url" id="newImage" required placeholder="https://images.unsplash.com/..." value="https://images.unsplash.com/photo-1596704017254-9b121068fb31?auto=format&fit=crop&w=800&q=80" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
-          </div>
-
-          <div>
-            <label class="block font-bold text-stone-700 mb-1">توضیحات مختصر و خواص</label>
-            <textarea id="newDesc" rows="2" placeholder="توضیح کیفیت، محل برداشت و خواص گیاهی..." class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none"></textarea>
-          </div>
-
-          <div class="pt-2">
-            <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl shadow-lg transition-all">
-              ثبت و انتشار محصول در فروشگاه
-            </button>
-          </div>
-        </form>
-      </div>
-    </div>
-  `;
-}
-
-// ========================
-// PAGE 5: ABOUT PAGE
+// PAGE 4: ABOUT & CONTACT
 // ========================
 function renderAboutPage() {
   return `
@@ -820,7 +515,7 @@ function renderAboutPage() {
         <span class="text-xs font-bold text-brand-amber">داستان ما</span>
         <h1 class="text-3xl sm:text-4xl font-black text-stone-900">سفر از دل باغات تا خانه شما</h1>
         <p class="text-stone-500 text-sm max-w-xl mx-auto">
-          عطارباشی با بیش از دو دهه تجربه خانواده در زمینه کشت و عرضه خشکبار اصیل ایرانی، پلی میان کیفیت بی‌پیرایه روستا و سفره خانواده‌های ایرانی است.
+          عطارباشی با بیش از دو دهه تجربه در زمینه کشت و عرضه خشکبار اصیل ایرانی، پلی میان کیفیت بی‌پیرایه روستا و سفره خانواده‌های ایرانی است.
         </p>
       </div>
 
@@ -830,23 +525,17 @@ function renderAboutPage() {
 
       <div class="grid grid-cols-1 md:grid-cols-3 gap-6 text-center">
         <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="check-check" class="w-6 h-6"></i>
-          </div>
+          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3"><i data-lucide="check-check" class="w-6 h-6"></i></div>
           <h3 class="font-bold text-sm text-stone-900">تست آزمایشگاهی</h3>
           <p class="text-xs text-stone-500 mt-1">تست عدم استفاده از سموم غیرمجاز و کنترل آفلاتوکسین مغزیجات.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="heart-handshake" class="w-6 h-6"></i>
-          </div>
+          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3"><i data-lucide="heart-handshake" class="w-6 h-6"></i></div>
           <h3 class="font-bold text-sm text-stone-900">حمایت از کشاورز بومی</h3>
           <p class="text-xs text-stone-500 mt-1">خرید نقدی و مستقیم با بالاترین نرخ از کشاورزان زحمتکش محلی.</p>
         </div>
         <div class="p-6 bg-white rounded-2xl border border-stone-200 shadow-sm">
-          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3">
-            <i data-lucide="sparkles" class="w-6 h-6"></i>
-          </div>
+          <div class="w-12 h-12 bg-brand-50 rounded-xl text-brand-600 flex items-center justify-center mx-auto mb-3"><i data-lucide="sparkles" class="w-6 h-6"></i></div>
           <h3 class="font-bold text-sm text-stone-900">بسته‌بندی پاک و بهداشتی</h3>
           <p class="text-xs text-stone-500 mt-1">ظروف دوستدار محیط زیست با ماندگاری حداکثری طعم و عطر گیاهان.</p>
         </div>
@@ -855,8 +544,55 @@ function renderAboutPage() {
   `;
 }
 
-// Component: Product Card
+function renderContactPage() {
+  return `
+    <div class="max-w-4xl mx-auto px-4 sm:px-6 py-16">
+      <div class="text-center space-y-4 mb-12">
+        <h1 class="text-3xl sm:text-4xl font-black text-stone-900">تماس و پشتیبانی عطارباشی</h1>
+        <p class="text-stone-500 text-sm max-w-xl mx-auto">همکاران ما در بخش پشتیبانی و مشاوره خرید، آماده پاسخگویی به پرسش‌های شما هستند.</p>
+      </div>
+
+      <div class="grid grid-cols-1 md:grid-cols-2 gap-8 bg-white p-8 rounded-3xl border border-stone-200 shadow-sm">
+        <div class="space-y-6 text-xs">
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center flex-shrink-0"><i data-lucide="phone" class="w-5 h-5"></i></div>
+            <div>
+              <span class="font-bold text-stone-800 text-sm block">شماره تلفن ثابت:</span>
+              <span class="text-stone-500">۰۲۱-۸۸۸۸۹۹۹۹ (شنبه تا پنج‌شنبه ۹ تا ۱۹)</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center flex-shrink-0"><i data-lucide="map-pin" class="w-5 h-5"></i></div>
+            <div>
+              <span class="font-bold text-stone-800 text-sm block">آدرس دفتر مرکزی و انبار:</span>
+              <span class="text-stone-500">تهران، خیابان ولیعصر، نرسیده به میدان ونک، پلاک ۲۳۰</span>
+            </div>
+          </div>
+          <div class="flex items-start gap-3">
+            <div class="w-10 h-10 rounded-xl bg-brand-50 text-brand-600 flex items-center justify-center flex-shrink-0"><i data-lucide="mail" class="w-5 h-5"></i></div>
+            <div>
+              <span class="font-bold text-stone-800 text-sm block">ایمیل پشتیبانی:</span>
+              <span class="text-stone-500 font-mono">support@attarbashi.ir</span>
+            </div>
+          </div>
+        </div>
+
+        <form onsubmit="alert('پیام شما ثبت گردید. با شما تماس گرفته خواهد شد.'); event.preventDefault();" class="space-y-3 text-xs">
+          <input type="text" required placeholder="نام شما" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
+          <input type="tel" required placeholder="شماره موبایل" class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none">
+          <textarea rows="3" required placeholder="متن پیام یا پرسش..." class="w-full p-3 rounded-xl border border-stone-200 focus:border-brand-500 focus:outline-none"></textarea>
+          <button type="submit" class="w-full py-3 bg-brand-600 hover:bg-brand-500 text-white font-bold rounded-xl shadow transition-all">ارسال پیام</button>
+        </form>
+      </div>
+    </div>
+  `;
+}
+
+// ========================================================
+// Component: Product Card & Blog Card
+// ========================================================
 function renderProductCard(product) {
+  const isOutOfStock = product.stock <= 0;
   return `
     <div class="group bg-white rounded-2xl border border-stone-200/80 overflow-hidden shadow-sm hover:shadow-xl hover:border-brand-200 transition-all duration-300 flex flex-col justify-between">
       <div class="relative overflow-hidden bg-stone-100 aspect-square">
@@ -884,12 +620,14 @@ function renderProductCard(product) {
         <div class="pt-4 border-t border-stone-100 mt-4 flex items-center justify-between">
           <div>
             ${product.oldPrice ? `<span class="block text-[11px] text-stone-400 line-through">${new Intl.NumberFormat('fa-IR').format(product.oldPrice)}</span>` : ''}
-            <span class="text-sm font-black text-brand-600">${formatPrice(product.price)}</span>
+            <span class="text-sm font-black text-brand-600">${StoreDB.formatPrice(product.price)}</span>
             <span class="text-[10px] text-stone-400 block">هر ${product.unit}</span>
           </div>
 
-          <button onclick="state.addToCart(${product.id})" class="p-2.5 rounded-xl bg-brand-50 hover:bg-brand-600 text-brand-600 hover:text-white transition-all shadow-sm" title="افزودن به سبد خرید">
-            <i data-lucide="shopping-bag" class="w-4 h-4"></i>
+          <button onclick="state.addToCart(${product.id})" ${isOutOfStock ? 'disabled' : ''} 
+            class="p-2.5 rounded-xl ${isOutOfStock ? 'bg-stone-200 text-stone-400 cursor-not-allowed' : 'bg-brand-50 hover:bg-brand-600 text-brand-600 hover:text-white'} transition-all shadow-sm" 
+            title="${isOutOfStock ? 'اتمام موجودی' : 'افزودن به سبد خرید'}">
+            <i data-lucide="${isOutOfStock ? 'slash' : 'shopping-bag'}" class="w-4 h-4"></i>
           </button>
         </div>
       </div>
@@ -897,7 +635,6 @@ function renderProductCard(product) {
   `;
 }
 
-// Component: Blog Card
 function renderBlogCard(blog) {
   return `
     <div onclick="navigate('blog-detail', ${blog.id})" class="group cursor-pointer bg-white rounded-2xl border border-stone-200/80 overflow-hidden shadow-sm hover:shadow-lg transition-all flex flex-col justify-between">
@@ -923,9 +660,9 @@ function renderBlogCard(blog) {
   `;
 }
 
-// ========================
-// Cart Drawer & Modals UI
-// ========================
+// ========================================================
+// Cart Drawer Logic
+// ========================================================
 function toggleCartDrawer() {
   const drawer = document.getElementById('cartDrawer');
   drawer.classList.toggle('hidden');
@@ -934,13 +671,15 @@ function toggleCartDrawer() {
 
 function updateCartUI() {
   const badge = document.getElementById('cartBadge');
+  const mobileBadge = document.getElementById('mobileCartBadge');
   const count = state.getCartCount();
   if (badge) badge.innerText = count;
+  if (mobileBadge) mobileBadge.innerText = count;
 
   const list = document.getElementById('cartItemsList');
   const total = document.getElementById('cartTotalPrice');
 
-  if (total) total.innerText = formatPrice(state.getCartTotal());
+  if (total) total.innerText = StoreDB.formatPrice(state.getCartTotal());
 
   if (!list) return;
 
@@ -962,7 +701,7 @@ function updateCartUI() {
       <img src="${item.image}" class="w-16 h-16 object-cover rounded-xl border border-stone-200">
       <div class="flex-1">
         <h4 class="font-bold text-xs text-stone-900 line-clamp-1">${item.title}</h4>
-        <span class="text-[11px] font-bold text-brand-600">${formatPrice(item.price)}</span>
+        <span class="text-[11px] font-bold text-brand-600">${StoreDB.formatPrice(item.price)}</span>
         <div class="flex items-center gap-2 mt-2">
           <button onclick="state.updateQuantity(${item.id}, -1)" class="w-6 h-6 rounded-lg bg-white border border-stone-200 flex items-center justify-center text-xs font-bold hover:bg-stone-100">-</button>
           <span class="text-xs font-bold text-stone-800">${item.quantity}</span>
@@ -977,18 +716,454 @@ function updateCartUI() {
   lucide.createIcons();
 }
 
-function checkoutCart() {
+// ========================================================
+// Checkout Modal & Coupon Logic
+// ========================================================
+function openCheckoutModal() {
   if (state.cart.length === 0) {
     alert("سبد خرید شما خالی است!");
     return;
   }
-  alert("سفارش شما با موفقیت ثبت شد! به درگاه پرداخت آزمایشی منتقل می‌شوید.");
-  state.cart = [];
-  state.saveCart();
   toggleCartDrawer();
+
+  // Pre-fill user data if logged in
+  const user = StoreDB.getCurrentUser();
+  if (user) {
+    if (user.name) document.getElementById('orderName').value = user.name;
+    if (user.phone) document.getElementById('orderPhone').value = user.phone;
+    if (user.address) document.getElementById('orderAddress').value = user.address;
+  }
+
+  updateCheckoutPrices();
+  document.getElementById('checkoutModal').classList.remove('hidden');
+  lucide.createIcons();
 }
 
-// Search Modal
+function closeCheckoutModal() {
+  document.getElementById('checkoutModal').classList.add('hidden');
+}
+
+function updateCheckoutPrices() {
+  const subtotal = state.getCartTotal();
+  const discount = state.discountAmount;
+  const shipping = subtotal >= 800000 || subtotal === 0 ? 0 : 45000;
+  const finalPrice = Math.max(0, subtotal - discount + shipping);
+
+  document.getElementById('checkoutSubtotal').innerText = StoreDB.formatPrice(subtotal);
+  
+  const discountRow = document.getElementById('checkoutDiscountRow');
+  const discountAmountEl = document.getElementById('checkoutDiscountAmount');
+  if (discount > 0) {
+    discountRow.classList.remove('hidden');
+    discountAmountEl.innerText = `- ${StoreDB.formatPrice(discount)}`;
+  } else {
+    discountRow.classList.add('hidden');
+  }
+
+  const shippingEl = document.getElementById('checkoutShippingFee');
+  if (shipping === 0) {
+    shippingEl.innerText = 'رایگان';
+    shippingEl.className = 'text-emerald-600 font-bold';
+  } else {
+    shippingEl.innerText = StoreDB.formatPrice(shipping);
+    shippingEl.className = 'text-stone-700 font-bold';
+  }
+
+  document.getElementById('checkoutFinalPrice').innerText = StoreDB.formatPrice(finalPrice);
+}
+
+function applyCouponCode() {
+  const code = document.getElementById('couponInput').value.trim();
+  const subtotal = state.getCartTotal();
+  const msgEl = document.getElementById('couponStatusMessage');
+
+  const res = StoreDB.validateCoupon(code, subtotal);
+  if (res.valid) {
+    state.appliedCoupon = res.coupon;
+    state.discountAmount = res.discountAmount;
+    msgEl.innerText = `✓ ${res.message} - کسر مبلغ: ${StoreDB.formatPrice(res.discountAmount)}`;
+    msgEl.className = 'text-[11px] font-bold text-emerald-600';
+    updateCheckoutPrices();
+  } else {
+    state.appliedCoupon = null;
+    state.discountAmount = 0;
+    msgEl.innerText = `✕ ${res.message}`;
+    msgEl.className = 'text-[11px] font-bold text-rose-600';
+    updateCheckoutPrices();
+  }
+}
+
+let selectedPaymentMethod = 'online';
+function handlePaymentMethodChange(method) {
+  selectedPaymentMethod = method;
+  const cardBox = document.getElementById('cardToCardDetailsBox');
+  const submitText = document.getElementById('checkoutSubmitText');
+
+  ['online', 'cod', 'card'].forEach(m => {
+    const lbl = document.getElementById(`label-method-${m}`);
+    if (lbl) {
+      if ((m === 'online' && method === 'online') || 
+          (m === 'cod' && method === 'cod') || 
+          (m === 'card' && method === 'card_to_card')) {
+        lbl.className = 'flex items-center justify-between p-3.5 rounded-xl border border-brand-500 bg-brand-50/50 cursor-pointer transition-all';
+      } else {
+        lbl.className = 'flex items-center justify-between p-3.5 rounded-xl border border-stone-200 hover:border-brand-300 cursor-pointer transition-all';
+      }
+    }
+  });
+
+  if (method === 'card_to_card') {
+    cardBox.classList.remove('hidden');
+    submitText.innerText = 'ثبت فیش و نهایی‌سازی سفارش';
+  } else if (method === 'cod') {
+    cardBox.classList.add('hidden');
+    submitText.innerText = 'ثبت نهایی سفارش (پرداخت در محل)';
+  } else {
+    cardBox.classList.add('hidden');
+    submitText.innerText = 'انتقال به درگاه امن شاپرک';
+  }
+}
+
+function handlePlaceOrder(e) {
+  e.preventDefault();
+  const customerName = document.getElementById('orderName').value.trim();
+  const phone = document.getElementById('orderPhone').value.trim();
+  const province = document.getElementById('orderProvince').value.trim();
+  const city = document.getElementById('orderCity').value.trim();
+  const address = document.getElementById('orderAddress').value.trim();
+
+  if (selectedPaymentMethod === 'card_to_card') {
+    const receipt = document.getElementById('cardReceiptCode').value.trim();
+    if (!receipt) {
+      alert("لطفاً شماره پیگیری فیش کارت به کارت را وارد فرمایید.");
+      return;
+    }
+  }
+
+  const subtotal = state.getCartTotal();
+  const discount = state.discountAmount;
+  const shipping = subtotal >= 800000 || subtotal === 0 ? 0 : 45000;
+  const finalPrice = Math.max(0, subtotal - discount + shipping);
+
+  const orderData = {
+    id: `ATB-${Math.floor(10000 + Math.random() * 90000)}`,
+    customerName,
+    phone,
+    province,
+    city,
+    address,
+    date: StoreDB.getPersianDate(),
+    paymentMethod: selectedPaymentMethod,
+    paymentStatus: selectedPaymentMethod === 'online' ? 'paid' : (selectedPaymentMethod === 'card_to_card' ? 'paid' : 'pending'),
+    status: 'processing',
+    trackingCode: `TRK-${Math.floor(10000000 + Math.random() * 90000000)}`,
+    subtotal,
+    discountAmount: discount,
+    couponCode: state.appliedCoupon ? state.appliedCoupon.code : null,
+    shippingFee: shipping,
+    total: finalPrice,
+    items: [...state.cart]
+  };
+
+  // If user is logged in without saved details, save them
+  const currentUser = StoreDB.getCurrentUser();
+  if (currentUser) {
+    StoreDB.setCurrentUser({ ...currentUser, name: customerName, phone, address });
+  }
+
+  if (selectedPaymentMethod === 'online') {
+    state.pendingCheckoutData = orderData;
+    closeCheckoutModal();
+    openGatewayModal(finalPrice);
+  } else {
+    // Process COD or Card-to-Card immediately
+    finalizeCompletedOrder(orderData);
+  }
+}
+
+// ========================================================
+// Simulated Shaparak Gateway Logic
+// ========================================================
+let gatewayTimerInterval = null;
+
+function openGatewayModal(amount) {
+  document.getElementById('gatewayAmount').innerText = StoreDB.formatPrice(amount);
+  document.getElementById('gatewayModal').classList.remove('hidden');
+
+  let remaining = 600; // 10 minutes
+  clearInterval(gatewayTimerInterval);
+  gatewayTimerInterval = setInterval(() => {
+    remaining--;
+    const mins = String(Math.floor(remaining / 60)).padStart(2, '0');
+    const secs = String(remaining % 60).padStart(2, '0');
+    const timerEl = document.getElementById('gatewayTimer');
+    if (timerEl) timerEl.innerText = `${mins}:${secs}`;
+    if (remaining <= 0) {
+      clearInterval(gatewayTimerInterval);
+      alert("مهلت پرداخت منقضی شد.");
+      cancelGatewayPayment();
+    }
+  }, 1000);
+
+  lucide.createIcons();
+}
+
+function requestDynamicBankOtp() {
+  const bankCode = Math.floor(10000 + Math.random() * 90000);
+  triggerSmsBanner(`بانک مرکزی (رمز پویا): رمز یک‌بار مصرف شما: ${bankCode} (معتبر تا ۲ دقیقه)`);
+  document.getElementById('gatewayOtp').value = bankCode;
+}
+
+function simulateSuccessfulPayment() {
+  clearInterval(gatewayTimerInterval);
+  document.getElementById('gatewayModal').classList.add('hidden');
+  if (state.pendingCheckoutData) {
+    finalizeCompletedOrder(state.pendingCheckoutData);
+    state.pendingCheckoutData = null;
+  }
+}
+
+function cancelGatewayPayment() {
+  clearInterval(gatewayTimerInterval);
+  document.getElementById('gatewayModal').classList.add('hidden');
+  alert("پرداخت لغو شد. سفارش شما ثبت نگردید.");
+}
+
+function finalizeCompletedOrder(orderData) {
+  closeCheckoutModal();
+  StoreDB.addOrder(orderData);
+
+  // Decrement stock in store
+  orderData.items.forEach(item => {
+    const prod = StoreDB.getProducts().find(p => p.id === item.id);
+    if (prod) {
+      const newStock = Math.max(0, prod.stock - item.quantity);
+      StoreDB.updateProduct(prod.id, { stock: newStock });
+    }
+  });
+
+  state.clearCart();
+
+  // Show order confirmation modal
+  document.getElementById('successOrderId').innerText = orderData.id;
+  document.getElementById('successTrackingCode').innerText = orderData.trackingCode;
+  document.getElementById('successTotalAmount').innerText = StoreDB.formatPrice(orderData.total);
+  document.getElementById('successPaymentMethod').innerText = 
+    orderData.paymentMethod === 'online' ? 'درگاه آنلاین شاپرک (موفق)' : 
+    (orderData.paymentMethod === 'card_to_card' ? 'کارت به کارت' : 'پرداخت در محل');
+
+  document.getElementById('orderSuccessModal').classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closeSuccessModal() {
+  document.getElementById('orderSuccessModal').classList.add('hidden');
+  navigate('home');
+}
+
+function closeSuccessModalAndOpenProfile() {
+  document.getElementById('orderSuccessModal').classList.add('hidden');
+  openUserModal();
+}
+
+// ========================================================
+// User Authentication & SMS OTP Simulation
+// ========================================================
+let otpTimerInterval = null;
+let simulatedOtpCode = null;
+
+function openUserModal() {
+  const user = StoreDB.getCurrentUser();
+  const loginView = document.getElementById('userLoginView');
+  const profileView = document.getElementById('userProfileView');
+
+  if (user) {
+    loginView.classList.add('hidden');
+    profileView.classList.remove('hidden');
+    document.getElementById('profileUserName').innerText = user.name || 'کاربر گرامی عطارباشی';
+    document.getElementById('profileUserPhone').innerText = user.phone;
+    renderUserOrders(user.phone);
+  } else {
+    loginView.classList.remove('hidden');
+    profileView.classList.add('hidden');
+    document.getElementById('otpStepPhone').classList.remove('hidden');
+    document.getElementById('otpStepVerify').classList.add('hidden');
+  }
+
+  document.getElementById('userModal').classList.remove('hidden');
+  lucide.createIcons();
+}
+
+function closeUserModal() {
+  document.getElementById('userModal').classList.add('hidden');
+  clearInterval(otpTimerInterval);
+}
+
+function handleSendOtp() {
+  const phone = document.getElementById('otpPhoneInput').value.trim();
+  if (!phone || phone.length < 10) {
+    alert("لطفاً شماره موبایل معتبر وارد کنید (مثال: ۰۹۱۲۳۴۵۶۷۸۹)");
+    return;
+  }
+
+  simulatedOtpCode = String(Math.floor(1000 + Math.random() * 9000));
+  document.getElementById('displayOtpPhone').innerText = phone;
+  document.getElementById('otpStepPhone').classList.add('hidden');
+  document.getElementById('otpStepVerify').classList.remove('hidden');
+
+  // Trigger simulated incoming phone SMS banner
+  triggerSmsBanner(`کد تایید ورود شما به عطارباشی: ${simulatedOtpCode}`);
+  document.getElementById('otpCodeInput').value = simulatedOtpCode; // Auto-fill for friendly testing
+
+  // Countdown timer
+  let seconds = 60;
+  const timerEl = document.getElementById('otpTimer');
+  const resendBtn = document.getElementById('otpResendBtn');
+  resendBtn.classList.add('cursor-not-allowed', 'text-stone-400');
+  resendBtn.classList.remove('text-brand-600', 'font-bold');
+
+  clearInterval(otpTimerInterval);
+  otpTimerInterval = setInterval(() => {
+    seconds--;
+    timerEl.innerText = `00:${String(seconds).padStart(2, '0')}`;
+    if (seconds <= 0) {
+      clearInterval(otpTimerInterval);
+      resendBtn.classList.remove('cursor-not-allowed', 'text-stone-400');
+      resendBtn.classList.add('text-brand-600', 'font-bold', 'cursor-pointer');
+    }
+  }, 1000);
+}
+
+function handleVerifyOtp() {
+  const entered = document.getElementById('otpCodeInput').value.trim();
+  const phone = document.getElementById('otpPhoneInput').value.trim();
+
+  if (entered === simulatedOtpCode || entered === '1234') {
+    clearInterval(otpTimerInterval);
+    const user = {
+      phone,
+      name: phone === '09123456789' ? 'علی رضایی' : 'مشتری عطارباشی',
+      address: 'تهران، خیابان ولیعصر'
+    };
+    StoreDB.setCurrentUser(user);
+    showToast("با موفقیت وارد حساب شدید ✨");
+    openUserModal(); // refresh view
+  } else {
+    alert("کد تایید وارد شده نامعتبر است!");
+  }
+}
+
+function handleUserLogout() {
+  StoreDB.logoutUser();
+  closeUserModal();
+  showToast("از حساب کاربری خارج شدید.");
+}
+
+function updateUserUI() {
+  const user = StoreDB.getCurrentUser();
+  const label = document.getElementById('userAuthLabel');
+  const mobileLabel = document.getElementById('mobileUserLabel');
+  if (user) {
+    if (label) label.innerText = user.name ? user.name.split(' ')[0] : 'پروفایل';
+    if (mobileLabel) mobileLabel.innerText = 'پروفایل';
+  } else {
+    if (label) label.innerText = 'ورود پیامکی';
+    if (mobileLabel) mobileLabel.innerText = 'حساب من';
+  }
+}
+
+function renderUserOrders(phone) {
+  const orders = StoreDB.getOrders();
+  // Filter by user phone, or show recent orders if user just placed them
+  const myOrders = orders.filter(o => o.phone === phone || o.phone.replace(/[^0-9]/g, '') === phone.replace(/[^0-9]/g, ''));
+  const container = document.getElementById('userOrdersList');
+  const countEl = document.getElementById('userOrdersCount');
+
+  const statusBadges = {
+    processing: '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-amber-100 text-amber-800">در حال پردازش</span>',
+    shipped: '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-blue-100 text-blue-800">ارسال با پست</span>',
+    delivered: '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-emerald-100 text-emerald-800">تحویل شده</span>',
+    cancelled: '<span class="px-2 py-0.5 rounded-full text-[10px] font-bold bg-rose-100 text-rose-800">لغو شده</span>'
+  };
+
+  if (myOrders.length === 0) {
+    countEl.innerText = '۰ سفارش';
+    container.innerHTML = `
+      <div class="py-8 text-center text-stone-400 bg-stone-50 rounded-2xl border border-stone-100">
+        <p class="font-bold">سفارشی برای این شماره ثبت نشده است.</p>
+        <p class="text-[11px] mt-1">با ثبت اولین سفارش، سوابق در اینجا ثبت می‌گردد.</p>
+      </div>
+    `;
+    return;
+  }
+
+  countEl.innerText = `${myOrders.length} سفارش`;
+  container.innerHTML = myOrders.map(o => `
+    <div class="p-3.5 bg-stone-50 rounded-2xl border border-stone-200 space-y-2">
+      <div class="flex items-center justify-between">
+        <span class="font-bold font-mono text-stone-800">${o.id}</span>
+        ${statusBadges[o.status] || o.status}
+      </div>
+      <div class="text-[11px] text-stone-500 line-clamp-1">
+        ${(o.items || []).map(i => `${i.title} (${i.quantity})`).join('، ')}
+      </div>
+      <div class="flex items-center justify-between pt-2 border-t border-stone-200/60 text-[11px]">
+        <span class="text-stone-400">${o.date}</span>
+        <span class="font-black text-brand-600">${StoreDB.formatPrice(o.total)}</span>
+      </div>
+      <div class="text-[10px] text-stone-400 font-mono">
+        کد رهگیری: ${o.trackingCode || 'ندارد'}
+      </div>
+    </div>
+  `).join('');
+}
+
+// ========================================================
+// Simulated Phone SMS Banner UI
+// ========================================================
+let smsBannerTimeout = null;
+
+function triggerSmsBanner(text) {
+  const banner = document.getElementById('smsNotificationBanner');
+  const textEl = document.getElementById('smsBannerText');
+  textEl.innerText = text;
+
+  banner.classList.remove('hidden');
+  setTimeout(() => {
+    banner.classList.remove('-translate-y-24');
+    banner.classList.add('translate-y-0');
+  }, 10);
+
+  clearTimeout(smsBannerTimeout);
+  smsBannerTimeout = setTimeout(() => {
+    dismissSmsBanner();
+  }, 6000);
+  lucide.createIcons();
+}
+
+function dismissSmsBanner() {
+  const banner = document.getElementById('smsNotificationBanner');
+  banner.classList.remove('translate-y-0');
+  banner.classList.add('-translate-y-24');
+  setTimeout(() => banner.classList.add('hidden'), 500);
+}
+
+// Toast
+function showToast(message) {
+  const toast = document.createElement('div');
+  toast.className = 'fixed bottom-20 md:bottom-6 left-6 z-50 bg-stone-900 text-white px-5 py-3 rounded-2xl shadow-2xl flex items-center gap-3 border border-stone-700 text-xs sm:text-sm font-medium transition-all';
+  toast.innerHTML = `<i data-lucide="check-circle" class="w-5 h-5 text-emerald-400"></i><span>${message}</span>`;
+  document.body.appendChild(toast);
+  lucide.createIcons();
+  setTimeout(() => {
+    toast.style.opacity = '0';
+    setTimeout(() => toast.remove(), 400);
+  }, 2600);
+}
+
+// ========================================================
+// Search Modal Logic
+// ========================================================
 function openSearchModal() {
   document.getElementById('searchModal').classList.remove('hidden');
   document.getElementById('searchInput').focus();
@@ -1023,64 +1198,14 @@ function handleSearch(query) {
           <span class="text-[10px] text-stone-400">${p.category}</span>
         </div>
       </div>
-      <span class="text-xs font-bold text-brand-600">${formatPrice(p.price)}</span>
+      <span class="text-xs font-bold text-brand-600">${StoreDB.formatPrice(p.price)}</span>
     </div>
   `).join('');
-}
-
-// Admin Modal Actions
-function openAddProductModal() {
-  document.getElementById('addProductModal').classList.remove('hidden');
-}
-
-function closeAddProductModal() {
-  document.getElementById('addProductModal').classList.add('hidden');
-}
-
-function handleCreateProduct(e) {
-  e.preventDefault();
-  const title = document.getElementById('newTitle').value;
-  const category = document.getElementById('newCategory').value;
-  const unit = document.getElementById('newUnit').value;
-  const price = Number(document.getElementById('newPrice').value);
-  const stock = Number(document.getElementById('newStock').value);
-  const image = document.getElementById('newImage').value;
-  const description = document.getElementById('newDesc').value;
-
-  const newProd = {
-    id: Date.now(),
-    title,
-    category,
-    unit,
-    price,
-    oldPrice: null,
-    stock,
-    rating: 5.0,
-    reviewsCount: 1,
-    image,
-    badge: "جدید",
-    description: description || "محصول تازه و ارگانیک اعلا"
-  };
-
-  state.products.unshift(newProd);
-  state.saveProducts();
-  closeAddProductModal();
-  showToast(`محصول «${title}» با موفقیت افزوده شد`);
-  navigate('admin');
-}
-
-function deleteProduct(id) {
-  if (confirm("آیا از حذف این محصول از فروشگاه مطمئن هستید؟")) {
-    state.products = state.products.filter(p => p.id !== id);
-    state.saveProducts();
-    navigate('admin');
-    showToast("محصول با موفقیت حذف گردید.");
-  }
 }
 
 // Global App Initialization
 window.addEventListener('DOMContentLoaded', () => {
   navigate('home');
   updateCartUI();
+  updateUserUI();
 });
-
